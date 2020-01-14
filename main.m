@@ -47,21 +47,9 @@ A0=A1-A2*A4inv*A3;
 C0=C1-C2*A4inv*A3;
 B0=B1-A2*A4inv*B2;
 D0=Dsp-C2*A4inv*B2;
-% 
-% Fixed-Point Solution of L equation
 %
 L00=A4inv*A3;
 L0=L00;
-% for i=1:50
-%    Li=L00+eps*A4inv*L0*(A1-A2*L0);
-%    i;
-%    L0=Li;
-%  end
-% Accuracy Test
-% ERR00=eps*L00*A1-A4*L00-eps*L00*A2*L00+A3;
-% i
-% Li
-% ERRiterere=eps*Li*A1-A4*Li-eps*Li*A2*Li+A3
 %
 % Newton Method Solution of the L-equation
 %
