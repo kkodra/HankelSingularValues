@@ -1,4 +1,5 @@
 function [Li,Hi] = calc_LH(A1,A2,A3,A4,eps)
+% Function computes matrices L and H needed for exact decoupling of SP system
 
 A4inv = inv(A4);
 L0 = A4inv*A3;
