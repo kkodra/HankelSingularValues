@@ -48,29 +48,32 @@ C0=C1-C2*A4inv*A3;
 B0=B1-A2*A4inv*B2;
 D0=Dsp-C2*A4inv*B2;
 %
-L00=A4inv*A3;
-L0=L00;
+%L00=A4inv*A3;
+%L0=L00;
 %
 % Newton Method Solution of the L-equation
 %
-for i = 1:10
-  Li=L0;
-  D1i=A4+eps*Li*A2;
-  D2i=-eps*(A1-A2*Li);
-  Qi=A3+eps*Li*A2*Li;
-  Li=lyap(D1i,D2i,-Qi);
-  i;
-  L0=Li;
-end
-  i
-  Li;
-  errNewton=eps*Li*A1-A4*Li-eps*Li*A2*Li+A3;
+%for i = 1:10
+%  Li=L0;
+%  D1i=A4+eps*Li*A2;
+%  D2i=-eps*(A1-A2*Li);
+%  Qi=A3+eps*Li*A2*Li;
+%  Li=lyap(D1i,D2i,-Qi);
+%  i;
+%  L0=Li;
+%end
+%  i
+%  Li;
+%  errNewton=eps*Li*A1-A4*Li-eps*Li*A2*Li+A3;
 %
 % H-equations via the direct method
 %
-Hi=lyap(D2i,D1i,-A2);
+%Hi=lyap(D2i,D1i,-A2);
 % error test for H
-HiError=Hi*A4-A2+eps*(Hi*Li*A2-A1*Hi+A2*Li*Hi);
+%HiError=Hi*A4-A2+eps*(Hi*Li*A2-A1*Hi+A2*Li*Hi);
+
+[Li,Hi] = calc_LH(A1,A2,A3,A4,eps);
+
 % Slow fast matrices
 As=A1-A2*Li;
 Bs=B1-Hi*B2-eps*Hi*Li*B1;
