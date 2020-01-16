@@ -1,5 +1,5 @@
-% PEM 8th-order Fuel Cell Singularly Perturbed Linear System
-%
+% Application of algorithms developed in IET Control to an 8th-order PEM Fuel Cell singularly perturbed linear system. Running main.m generates results.	
+
 clear all
 % Input Data
 n=8; m=1; l=3; c=3;
