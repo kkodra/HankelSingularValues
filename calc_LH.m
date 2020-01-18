@@ -15,7 +15,7 @@ for i = 1:10
   Li = lyap(D1i,D2i,-Qi);
   L0 = Li;
 end
-  errNewton = eps*Li*A1-A4*Li-eps*Li*A2*Li+A3;
+errNewton = eps*Li*A1-A4*Li-eps*Li*A2*Li+A3;
 
 % H-equations via the direct method
 Hi = lyap(D2i,D1i,-A2);
