@@ -1,6 +1,7 @@
 % Application of algorithms developed in IET Control to an 8th-order PEM Fuel Cell singularly perturbed linear system. Running main.m generates results.	
 
 clear all
+
 % Input Data
 n=8; m=1; l=3; c=3;
 A=[-6.30908 0 -10.9544 0 83.74458 0 0 24.05866;
@@ -197,7 +198,8 @@ DDD=Dsp;
 sys_Diag=ss(AAA,BBB,CCC,DDD);
 [sys_BiagBal,SIGMA]=balreal(sys_Diag);
 SIGMA;
-% now is ok, we got the exact ones.
+
+% Ok now, got the exact ones.
 % Problems with Shahruz work for using the approximate DECOUPLED Systems
 CMsappr=ctrb(A0,B0);
 Crank_s_appr=rank(CMsappr);
