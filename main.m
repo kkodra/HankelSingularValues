@@ -65,8 +65,6 @@ Cf=C2+eps*Cs*Hi;
 % Chang Transformation
 Tchang=[eye(3)-eps*Hi*Li -eps*Hi;Li eye(5)];
 a=Tchang*Asp*inv(Tchang);
-% Tchang2=[eye(3) eps*Hi;-Li eye(5)-eps*Li*Hi]
-% a2=inv(Tchang2)*Asp*Tchang2
 %
 % Exact Slow-Fast Controllability Grammians, formula (52)
 %
