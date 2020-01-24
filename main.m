@@ -68,16 +68,16 @@ Tchang=[eye(3)-eps*Hi*Li -eps*Hi;Li eye(5)];
 a=Tchang*Asp*inv(Tchang);
 %
 % Exact Slow-Fast Controllability Grammians, formula (52)
-%
+
 Wcs=lyap2(As,Bs*Bs');
 Wcf=lyap2(Af,Bf*Bf');
 Wcsf=lyap2(eps*As,Af',Bs*Bf');
 Wc=inv(Tchang)*[Wcs Wcsf; Wcsf' Wcf/eps]*inv(Tchang'); % formula (54)
 WcDirect=lyap2(Asp,Bsp*Bsp');
 ERRcon=WcDirect-Wc;
-%
+
 % Exact Slow-Fast Observability Grammians, formula (53)
-%
+
 Wos=lyap2(As',Cs'*Cs);
 Wof=lyap2(Af',Cf'*Cf);
 Wosf=lyap2(eps*As',Af,Cs'*Cf);
@@ -85,6 +85,7 @@ WoSP=[Wos eps*Wosf; eps*Wosf' eps*Wof];
 Wo=Tchang'*WoSP*Tchang; % formula (54)
 WoDirect=lyap2(Asp',Csp'*Csp);
 ERRobs=WoDirect-Wo;
+
 lambdaobs=eig(WoDirect);
 lambdaobs_sf=eig(Wo);
 HSVslow=sqrt(eig(Wcs*Wos));
