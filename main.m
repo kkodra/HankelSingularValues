@@ -4,6 +4,7 @@ clear all
 
 % Input Data
 n=8; m=1; l=3; c=3;
+
 A=[-6.30908 0 -10.9544 0 83.74458 0 0 24.05866;
     0 -161.083 0 0 51.52923 0 -18.0261 0;
     -18.7858 0 -46.3136 0 275.6592 0 0 158.3741;
@@ -35,7 +36,7 @@ Asp=V*A*V';
 Bsp=P25*P24*P27*P15*P36*B;
 Csp=C*P36*P15*P27*P24*P25;
 Dsp=D;
-eps=0.157
+eps=0.157   % Calculated as ratio of eigenvalues with largest separation
 
 A1=Asp(1:3,1:3);
 A2=Asp(1:3,4:8);
