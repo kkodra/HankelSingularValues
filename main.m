@@ -123,59 +123,44 @@ Cbf = Cf*Tbinvf;
 Sigma;
 Sigma_bs;
 Sigma_bf;
-%
+
 % O(e^2) approximation
-Psf0=-Bs*Bf'*inv(Af');
-Qsf0=-Cs'*Cf*inv(Af);
-sigma2s=sqrt(eig(Wcs*Wos+eps*Psf0*Qsf0'));
-sigma2f=sqrt(eig(Wcf*Wof+eps*Psf0'*Qsf0));
+Psf0 = -Bs*Bf'*inv(Af');
+Qsf0 = -Cs'*Cf*inv(Af);
+sigma2s = sqrt(eig(Wcs*Wos+eps*Psf0*Qsf0'));
+sigma2f = sqrt(eig(Wcf*Wof+eps*Psf0'*Qsf0));
 %
 % NOT GOOD TO USE EXACT Wcs, Wos, Wcf, Wof, and approximate Psfo and Qsf0
 % produces negative eigenvalues
+
+% Approximate Slow System Balancing
 %
-% ApproximateSlow System Balancing
-%
-sys_sappr=ss(A0,B0,C0,D0);
-[sys_sbappr,Sigma_bsappr,Tbsappr,Tbinvsappr]=balreal(sys_sappr);
-Absappr=Tbsappr*A0*Tbinvsappr;
-Bbsappr=Tbsappr*B0;
-Cbsappr=C0*Tbinvsappr;
+sys_sappr = ss(A0,B0,C0,D0);
+[sys_sbappr,Sigma_bsappr,Tbsappr,Tbinvsappr] = balreal(sys_sappr);
+Absappr = Tbsappr*A0*Tbinvsappr;
+Bbsappr = Tbsappr*B0;
+Cbsappr = C0*Tbinvsappr;
 Sigma_bsappr;
-%
-% Appriximate Fast System Balancing
-%
-D2=zeros(3,1);
-sys_fappr=ss(A4/eps,B2/eps,C2,D2);
-[sys_fbappr,Sigma_bfappr,Tbfappr,Tbinvfappr]=balreal(sys_fappr);
-Abfappr=Tbfappr*A4*Tbinvfappr;
-Bbfappr=Tbfappr*B2;
-Cbfappr=C2*Tbinvfappr;
+
+% Approximate Fast System Balancing
+
+D2 = zeros(3,1);
+sys_fappr = ss(A4/eps,B2/eps,C2,D2);
+[sys_fbappr,Sigma_bfappr,Tbfappr,Tbinvfappr] = balreal(sys_fappr);
+Abfappr = Tbfappr*A4*Tbinvfappr;
+Bbfappr = Tbfappr*B2;
+Cbfappr = C2*Tbinvfappr;
 Sigma_bfappr;
 %
 % Shahruz's Work
 %
-P1bar=lyap2(A0,B0*B0');
-Q1bar=lyap2(A0',C0'*C0);
-P3bar=lyap2(A4,B2*B2');
-Q3bar=lyap2(A4',C2'*C2);
-HSVslow_appr=sqrt(eig(P1bar*Q1bar));
-HSVfast_appr=sqrt(eig(P3bar*Q3bar));
-%
-% O(e) Improvement of Shahruz's Work
-%
-% As1=(eye(3)-eps*A2*inv(A4)*A3)*A0
-% Af1=A4+eps*inv(A4)*A3*A2
-% Bs1=
-% Bf1=
-% Cs1=
-% Cf1=
-% P1bar=lyap2(A0,B0*B0');
-% Q1bar=lyap2(A0',C0'*C0);
-% P3bar=lyap2(A4,B2*B2');
-% Q3bar=lyap2(A4',C2'*C2);
-% HSVslow_appr=sqrt(eig(P1bar*Q1bar))
-% HSVfast
-%
+P1bar = lyap2(A0,B0*B0');
+Q1bar = lyap2(A0',C0'*C0);
+P3bar = lyap2(A4,B2*B2');
+Q3bar = lyap2(A4',C2'*C2);
+HSVslow_appr = sqrt(eig(P1bar*Q1bar));
+HSVfast_appr = sqrt(eig(P3bar*Q3bar));
+
 % Summary of Hankel Singular Values
 %
 Sigma;
@@ -186,23 +171,23 @@ Sigma_bsappr;
 Sigma_bfappr;
 % Diagonalization is ok but MUST KEEP Cnew=[Cs Cf]
 % to get the exact Hankel Singular Values, also B=[Bs;Bf/eps]
-AAA=[As zeros(3,5);zeros(5,3) Af/eps];
-BBB=[Bs;Bf/eps];
-CCC=[Cs Cf];
-DDD=Dsp;
-sys_Diag=ss(AAA,BBB,CCC,DDD);
-[sys_BiagBal,SIGMA]=balreal(sys_Diag);
+AAA = [As zeros(3,5);zeros(5,3) Af/eps];
+BBB = [Bs;Bf/eps];
+CCC = [Cs Cf];
+DDD = Dsp;
+sys_Diag = ss(AAA,BBB,CCC,DDD);
+[sys_BiagBal,SIGMA] = balreal(sys_Diag);
 SIGMA;
 
-% Ok now, got the exact ones.
+% Got the exact ones.
 % Problems with Shahruz work for using the approximate DECOUPLED Systems
-CMsappr=ctrb(A0,B0);
-Crank_s_appr=rank(CMsappr);
-CMfappr=ctrb(A4,B2);
-Crank_f_appr=rank(CMfappr);
-CMfexact=ctrb(Af,Bf);
-Crank_fast_exact=rank(CMfexact);
-delta_i=Sigma-sigma_i
-percent=(delta_i./Sigma)*100
+CMsappr = ctrb(A0,B0);
+Crank_s_appr = rank(CMsappr);
+CMfappr = ctrb(A4,B2);
+Crank_f_appr = rank(CMfappr);
+CMfexact = ctrb(Af,Bf);
+Crank_fast_exact = rank(CMfexact);
+delta_i = Sigma-sigma_i
+percent = (delta_i./Sigma)*100
 
 
