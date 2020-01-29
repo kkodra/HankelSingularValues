@@ -15,4 +15,13 @@ Implementation is based on the following.
 	keywords={continuous time systems;linear systems;reduced order systems;singularly perturbed systems;Hankel singular values;singularly perturbed linear continuous-time systems;linear singularly perturbed systems;reduced-order problems;numerical ill-conditioning;singular perturbation parameter;system order reduction},
 	doi={10.1049/iet-cta.2016.1240},
 	ISSN={1751-8652},
-	month={},}			
+	month={},}	
+
+If you use PL-SLAM in your research work, please cite:
+
+    @article{gomez2017pl,
+      title   = {{PL-SLAM: a Stereo SLAM System through the Combination of Points and Line Segments}},
+      author  = {Gomez-Ojeda, Ruben and Zuñiga-Noël, David and Moreno, Francisco-Angel and Scaramuzza, Davide and Gonzalez-Jimenez, Javier},
+      journal = {arXiv preprint arXiv:1705.09479},
+      year    = {2017}
+}		
