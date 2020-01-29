@@ -10,7 +10,5 @@ If you use this code, please cite as follows.
       		author  = {K. {Kodra} and M. {Skataric} and Z. {Gajic}},
       		journal = {IET Control Theory Applications},
       		year    = {2017},
-		volume  = {11},
-		number  = {7}
 }
 
