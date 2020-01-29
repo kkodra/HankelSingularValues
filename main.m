@@ -50,81 +50,76 @@ C1 = Csp(1:3,1:3);
 C2 = Csp(1:3,4:8);
 A0 = A1-A2*A4inv*A3;
 C0 = C1-C2*A4inv*A3;
-B0=B1-A2*A4inv*B2;
-D0=Dsp-C2*A4inv*B2;
+B0 = B1-A2*A4inv*B2;
+D0 = Dsp-C2*A4inv*B2;
 
 [Li,Hi] = calc_LH(A1,A2,A3,A4,eps);
 
 % Slow fast matrices
-As=A1-A2*Li;
-Bs=B1-Hi*B2-eps*Hi*Li*B1;
+As = A1-A2*Li;
+Bs = B1-Hi*B2-eps*Hi*Li*B1;
 Cs=C1-C2*Li;
-Af=A4+eps*Li*A2;
-Bf=B2+eps*Li*B1;
-Cf=C2+eps*Cs*Hi;
+Af = A4+eps*Li*A2;
+Bf = B2+eps*Li*B1;
+Cf = C2+eps*Cs*Hi;
 %
 % Chang Transformation
-Tchang=[eye(3)-eps*Hi*Li -eps*Hi;Li eye(5)];
-a=Tchang*Asp*inv(Tchang);
+Tchang = [eye(3)-eps*Hi*Li -eps*Hi;Li eye(5)];
+a = Tchang*Asp*inv(Tchang);
 %
 % Exact Slow-Fast Controllability Grammians, formula (52)
 
-Wcs=lyap2(As,Bs*Bs');
-Wcf=lyap2(Af,Bf*Bf');
-Wcsf=lyap2(eps*As,Af',Bs*Bf');
-Wc=inv(Tchang)*[Wcs Wcsf; Wcsf' Wcf/eps]*inv(Tchang'); % formula (54)
-WcDirect=lyap2(Asp,Bsp*Bsp');
-ERRcon=WcDirect-Wc;
+Wcs = lyap2(As,Bs*Bs');
+Wcf = lyap2(Af,Bf*Bf');
+Wcsf = lyap2(eps*As,Af',Bs*Bf');
+Wc = inv(Tchang)*[Wcs Wcsf; Wcsf' Wcf/eps]*inv(Tchang'); % formula (54)
+WcDirect = lyap2(Asp,Bsp*Bsp');
+ERRcon = WcDirect-Wc;
 
 % Exact Slow-Fast Observability Grammians, formula (53)
+Wos = lyap2(As',Cs'*Cs);
+Wof = lyap2(Af',Cf'*Cf);
+Wosf = lyap2(eps*As',Af,Cs'*Cf);
+WoSP = [Wos eps*Wosf; eps*Wosf' eps*Wof];
+Wo = Tchang'*WoSP*Tchang; % formula (54)
+WoDirect = lyap2(Asp',Csp'*Csp);
+ERRobs = WoDirect-Wo;
 
-Wos=lyap2(As',Cs'*Cs);
-Wof=lyap2(Af',Cf'*Cf);
-Wosf=lyap2(eps*As',Af,Cs'*Cf);
-WoSP=[Wos eps*Wosf; eps*Wosf' eps*Wof];
-Wo=Tchang'*WoSP*Tchang; % formula (54)
-WoDirect=lyap2(Asp',Csp'*Csp);
-ERRobs=WoDirect-Wo;
-
-lambdaobs=eig(WoDirect);
-lambdaobs_sf=eig(Wo);
-HSVslow=sqrt(eig(Wcs*Wos));
-HSVfast=sqrt(eig(Wcf*Wof));
-WconWobs=[Wcs*Wos+eps*Wcsf*Wosf' eps*(Wcs*Wosf+Wcsf*Wof);
+lambdaobs = eig(WoDirect);
+lambdaobs_sf = eig(Wo);
+HSVslow = sqrt(eig(Wcs*Wos));
+HSVfast = sqrt(eig(Wcf*Wof));
+WconWobs = [Wcs*Wos+eps*Wcsf*Wosf' eps*(Wcs*Wosf+Wcsf*Wof);
                   Wcsf'*Wos+Wcf*Wosf' Wcf*Wof+eps*Wcsf'*Wosf];
-sigma_i=sqrt(eig(WconWobs))
+sigma_i = sqrt(eig(WconWobs))
 
-                  
-%
 % Conclusion: THE FAST SYSTEM IS STABILIZABLE, but  very weakly CONTROLLABLE
 % 
 % BALANCING
-sysSP=ss(Asp,Bsp,Csp,Dsp);
-Ds=zeros(3,1);
-[sysb,Sigma,Tb,Tbinv]=balreal(sysSP);
-Ab=Tb*Asp*Tbinv;
-Bb=Tb*Bsp;
-Cb=C*Tbinv;
-Db=Dsp;
+sysSP = ss(Asp,Bsp,Csp,Dsp);
+Ds = zeros(3,1);
+[sysb,Sigma,Tb,Tbinv] = balreal(sysSP);
+Ab = Tb*Asp*Tbinv;
+Bb = Tb*Bsp;
+Cb = C*Tbinv;
+Db = Dsp;
 eig(Ab);
 %
 % Slow System Exact Balancing
-%
-sys_s=ss(As,Bs,Cs,Ds);
-[sys_sb,Sigma_bs,Tbs,Tbinvs]=balreal(sys_s);
-Abs=Tbs*As*Tbinvs;
-Bbs=Tbs*Bs;
-Cbs=Cs*Tbinvs;
+sys_s = ss(As,Bs,Cs,Ds);
+[sys_sb,Sigma_bs,Tbs,Tbinvs] = balreal(sys_s);
+Abs = Tbs*As*Tbinvs;
+Bbs = Tbs*Bs;
+Cbs = Cs*Tbinvs;
 Sigma_bs;
 %
 % Fast System Exact Balancing
-%
-Df=zeros(3,1);
-sys_f=ss(Af/eps,Bf/eps,Cf,Df);
-[sys_fb,Sigma_bf,Tbf,Tbinvf]=balreal(sys_f);
-Abf=Tbf*Af*Tbinvf;
-Bbf=Tbf*Bf;
-Cbf=Cf*Tbinvf;
+Df = zeros(3,1);
+sys_f = ss(Af/eps,Bf/eps,Cf,Df);
+[sys_fb,Sigma_bf,Tbf,Tbinvf] = balreal(sys_f);
+Abf = Tbf*Af*Tbinvf;
+Bbf = Tbf*Bf;
+Cbf = Cf*Tbinvf;
 Sigma;
 Sigma_bs;
 Sigma_bf;
