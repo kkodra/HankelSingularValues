@@ -3,3 +3,16 @@ Code implements an efficient algorithm for computing precisely the Hankel singul
 
 Implementation is based on the following.
 * Kodra, Skataric, Gajic "Finding Hankel singular values for singularly perturbed linear continuous-time systems," IET Control Theory, 2017.
+
+	@ARTICLE{7898625,
+	author={K. {Kodra} and M. {Skataric} and Z. {Gajic}},
+	journal={IET Control Theory Applications},
+	title={Finding Hankel singular values for singularly perturbed linear continuous-time systems},
+	year={2017},
+	volume={11},
+	number={7},
+	pages={1063-1069},
+	keywords={continuous time systems;linear systems;reduced order systems;singularly perturbed systems;Hankel singular values;singularly perturbed linear continuous-time systems;linear singularly perturbed systems;reduced-order problems;numerical ill-conditioning;singular perturbation parameter;system order reduction},
+	doi={10.1049/iet-cta.2016.1240},
+	ISSN={1751-8652},
+	month={},}			
