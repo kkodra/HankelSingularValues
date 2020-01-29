@@ -15,11 +15,11 @@ If you use this code, please cite as follows.
         	        number  = {7}
 }
 
-##1. Instructions
+## 1. Instructions
 
 Running _main.m_ generates all the results presented in the paper.
 
-##2. Dependencies
+## 2. Dependencies
 
 Code does not depend on external libraries.
 
