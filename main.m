@@ -5,7 +5,7 @@ clear all
 % Input Data
 n=8; m=1; l=3; c=3;
 
-A=[-6.30908 0 -10.9544 0 83.74458 0 0 24.05866;
+A = [-6.30908 0 -10.9544 0 83.74458 0 0 24.05866;
     0 -161.083 0 0 51.52923 0 -18.0261 0;
     -18.7858 0 -46.3136 0 275.6592 0 0 158.3741;
     0 0 0 -17.3506 193.9373 0 0 0;
@@ -14,13 +14,13 @@ A=[-6.30908 0 -10.9544 0 83.74458 0 0 24.05866;
     0 -450.386 0 0 142.2084 0 -80.9472 0;
     2.02257 0 4.621237 0 0 0 0 -51.2108];
 
-B=[0;0;0;3.946683;0;0;0;0];
+B = [0;0;0;3.946683;0;0;0;0];
 
-C=[0 0 0 5.066579 -116.446 0 0 0;
+C = [0 0 0 5.066579 -116.446 0 0 0;
     0 0 0 0 1 0 0 0;
     12.96889 10.32532 -0.56926 0 0 0 0 0];
 
-D=[0;0;0];
+D = [0;0;0];
 
 % Transformation to put the system in explicit singularly perturbed form
 I = eye(n);
@@ -31,25 +31,25 @@ P24 = swap_rows(I,2,4);
 P25 = swap_rows(I,2,5);
 
 % Pij permutation matrices: switch i and j rows.
-V=P25*P24*P27*P15*P36;
-Asp=V*A*V';
-Bsp=P25*P24*P27*P15*P36*B;
-Csp=C*P36*P15*P27*P24*P25;
-Dsp=D;
-eps=0.157   % Calculated as ratio of eigenvalues with largest separation
+V = P25*P24*P27*P15*P36;
+Asp = V*A*V';
+Bsp = P25*P24*P27*P15*P36*B;
+Csp = C*P36*P15*P27*P24*P25;
+Dsp = D;
+eps = 0.157   % Calculated as ratio of eigenvalues with largest separation
 
-A1=Asp(1:3,1:3);
-A2=Asp(1:3,4:8);
-A3=eps*Asp(4:8,1:3);
-A4=eps*Asp(4:8,4:8);
-det(A4);
-A4inv=inv(A4);
-B1=Bsp(1:3,1:1);
-B2=eps*Bsp(4:8,1:1);
-C1=Csp(1:3,1:3);
-C2=Csp(1:3,4:8);
-A0=A1-A2*A4inv*A3;
-C0=C1-C2*A4inv*A3;
+A1 = Asp(1:3,1:3);
+A2 = Asp(1:3,4:8);
+A3 = eps*Asp(4:8,1:3);
+A4 = eps*Asp(4:8,4:8);
+
+A4inv = inv(A4);
+B1 = Bsp(1:3,1:1);
+B2 = eps*Bsp(4:8,1:1);
+C1 = Csp(1:3,1:3);
+C2 = Csp(1:3,4:8);
+A0 = A1-A2*A4inv*A3;
+C0 = C1-C2*A4inv*A3;
 B0=B1-A2*A4inv*B2;
 D0=Dsp-C2*A4inv*B2;
 
