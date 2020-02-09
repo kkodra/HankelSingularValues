@@ -95,8 +95,7 @@ WconWobs = [Wcs*Wos+eps*Wcsf*Wosf' eps*(Wcs*Wosf+Wcsf*Wof);
                   Wcsf'*Wos+Wcf*Wosf' Wcf*Wof+eps*Wcsf'*Wosf];
 sigma_i = sqrt(eig(WconWobs))
 
-% Conclusion: THE FAST SYSTEM IS STABILIZABLE, but  very weakly CONTROLLABLE
-% 
+% Conclusion: THE FAST SYSTEM IS STABILIZABLE, but  very weakly CONTROLLABLE 
 % BALANCING
 sysSP = ss(Asp,Bsp,Csp,Dsp);
 Ds = zeros(3,1);
@@ -106,7 +105,7 @@ Bb = Tb*Bsp;
 Cb = C*Tbinv;
 Db = Dsp;
 eig(Ab);
-%
+
 % Slow System Exact Balancing
 sys_s = ss(As,Bs,Cs,Ds);
 [sys_sb,Sigma_bs,Tbs,Tbinvs] = balreal(sys_s);
@@ -114,7 +113,7 @@ Abs = Tbs*As*Tbinvs;
 Bbs = Tbs*Bs;
 Cbs = Cs*Tbinvs;
 Sigma_bs;
-%
+
 % Fast System Exact Balancing
 Df = zeros(3,1);
 sys_f = ss(Af/eps,Bf/eps,Cf,Df);
@@ -131,12 +130,11 @@ Psf0 = -Bs*Bf'*inv(Af');
 Qsf0 = -Cs'*Cf*inv(Af);
 sigma2s = sqrt(eig(Wcs*Wos+eps*Psf0*Qsf0'));
 sigma2f = sqrt(eig(Wcf*Wof+eps*Psf0'*Qsf0));
-%
+
 % NOT GOOD TO USE EXACT Wcs, Wos, Wcf, Wof, and approximate Psfo and Qsf0
 % produces negative eigenvalues
 
 % Approximate Slow System Balancing
-%
 sys_sappr = ss(A0,B0,C0,D0);
 [sys_sbappr,Sigma_bsappr,Tbsappr,Tbinvsappr] = balreal(sys_sappr);
 Absappr = Tbsappr*A0*Tbinvsappr;
@@ -145,7 +143,6 @@ Cbsappr = C0*Tbinvsappr;
 Sigma_bsappr;
 
 % Approximate Fast System Balancing
-
 D2 = zeros(3,1);
 sys_fappr = ss(A4/eps,B2/eps,C2,D2);
 [sys_fbappr,Sigma_bfappr,Tbfappr,Tbinvfappr] = balreal(sys_fappr);
@@ -153,9 +150,8 @@ Abfappr = Tbfappr*A4*Tbinvfappr;
 Bbfappr = Tbfappr*B2;
 Cbfappr = C2*Tbinvfappr;
 Sigma_bfappr;
-%
+
 % Shahruz's Work
-%
 P1bar = lyap2(A0,B0*B0');
 Q1bar = lyap2(A0',C0'*C0);
 P3bar = lyap2(A4,B2*B2');
