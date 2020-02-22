@@ -169,7 +169,7 @@ sys_Diag = ss(AAA,BBB,CCC,DDD);
 [sys_BiagBal,SIGMA] = balreal(sys_Diag);
 SIGMA;
 
-% Got the exact ones.
+% Got the exact ones (see Table 4 in reference)
 % Problems with Shahruz work for using the approximate DECOUPLED Systems
 CMsappr = ctrb(A0,B0);
 Crank_s_appr = rank(CMsappr);
