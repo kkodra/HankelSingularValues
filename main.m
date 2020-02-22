@@ -97,6 +97,7 @@ WconWobs = [Wcs*Wos+eps*Wcsf*Wosf' eps*(Wcs*Wosf+Wcsf*Wof);
                   Wcsf'*Wos+Wcf*Wosf' Wcf*Wof+eps*Wcsf'*Wosf];
 
 fprintf(2,'Exact Hankel singular values (last column of Table 2 in reference):\n')
+disp(repmat('=',1,65))
 sigma_i = sqrt(eig(WconWobs))
 
 % Conclusion: THE FAST SYSTEM IS STABILIZABLE, but  very weakly CONTROLLABLE 
@@ -108,7 +109,6 @@ Ab = Tb*Asp*Tbinv;
 Bb = Tb*Bsp;
 Cb = C*Tbinv;
 Db = Dsp;
-eig(Ab);
 
 % Slow System Exact Balancing
 sys_s = ss(As,Bs,Cs,Ds);
@@ -116,7 +116,6 @@ sys_s = ss(As,Bs,Cs,Ds);
 Abs = Tbs*As*Tbinvs;
 Bbs = Tbs*Bs;
 Cbs = Cs*Tbinvs;
-Sigma_bs;
 
 % Fast System Exact Balancing
 Df = zeros(3,1);
@@ -125,9 +124,6 @@ sys_f = ss(Af/eps,Bf/eps,Cf,Df);
 Abf = Tbf*Af*Tbinvf;
 Bbf = Tbf*Bf;
 Cbf = Cf*Tbinvf;
-Sigma;
-Sigma_bs;
-Sigma_bf;
 
 % O(e^2) approximation
 Psf0 = -Bs*Bf'*inv(Af');
@@ -144,7 +140,6 @@ sys_sappr = ss(A0,B0,C0,D0);
 Absappr = Tbsappr*A0*Tbinvsappr;
 Bbsappr = Tbsappr*B0;
 Cbsappr = C0*Tbinvsappr;
-Sigma_bsappr;
 
 % Approximate Fast System Balancing
 D2 = zeros(3,1);
@@ -153,7 +148,6 @@ sys_fappr = ss(A4/eps,B2/eps,C2,D2);
 Abfappr = Tbfappr*A4*Tbinvfappr;
 Bbfappr = Tbfappr*B2;
 Cbfappr = C2*Tbinvfappr;
-Sigma_bfappr;
 
 % Shahruz's Work
 P1bar = lyap2(A0,B0*B0');
@@ -171,7 +165,6 @@ CCC = [Cs Cf];
 DDD = Dsp;
 sys_Diag = ss(AAA,BBB,CCC,DDD);
 [sys_BiagBal,SIGMA] = balreal(sys_Diag);
-SIGMA;
 
 % Got the exact ones (see Table 4 in reference)
 % Problems with Shahruz work for using the approximate DECOUPLED Systems
@@ -183,6 +176,7 @@ CMfexact = ctrb(Af,Bf);
 Crank_fast_exact = rank(CMfexact);
 
 fprintf(2,'Delta of Hankel singular values after 5th iteration (3rd column of Table 2 in reference):\n')
+disp(repmat('=',1,90));
 delta_i = Sigma-sigma_i
 percent = (delta_i./Sigma)*100
 
