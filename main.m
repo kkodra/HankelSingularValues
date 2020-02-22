@@ -131,7 +131,7 @@ Qsf0 = -Cs'*Cf*inv(Af);
 sigma2s = sqrt(eig(Wcs*Wos+eps*Psf0*Qsf0'));
 sigma2f = sqrt(eig(Wcf*Wof+eps*Psf0'*Qsf0));
 
-% NOT GOOD TO USE EXACT Wcs, Wos, Wcf, Wof, and approximate Psfo and Qsf0
+% Not satisfacotry using Wcs, Wos, Wcf, Wof, and approximate Psfo and Qsf0
 % produces negative eigenvalues
 
 % Approximate Slow System Balancing
