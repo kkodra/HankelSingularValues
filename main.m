@@ -95,6 +95,8 @@ HSVslow = sqrt(eig(Wcs*Wos));
 HSVfast = sqrt(eig(Wcf*Wof));
 WconWobs = [Wcs*Wos+eps*Wcsf*Wosf' eps*(Wcs*Wosf+Wcsf*Wof);
                   Wcsf'*Wos+Wcf*Wosf' Wcf*Wof+eps*Wcsf'*Wosf];
+
+fprintf(2,'Exact Hankel singular values (last column of Table 2 in reference):\n')
 sigma_i = sqrt(eig(WconWobs))
 
 % Conclusion: THE FAST SYSTEM IS STABILIZABLE, but  very weakly CONTROLLABLE 
@@ -179,6 +181,8 @@ CMfappr = ctrb(A4,B2);
 Crank_f_appr = rank(CMfappr);
 CMfexact = ctrb(Af,Bf);
 Crank_fast_exact = rank(CMfexact);
+
+fprintf(2,'Delta of Hankel singular values after 5th iteration (3rd column of Table 2 in reference):\n')
 delta_i = Sigma-sigma_i
 percent = (delta_i./Sigma)*100
 
