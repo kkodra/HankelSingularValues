@@ -4,6 +4,8 @@
 clc
 clear all
 
+format long e
+
 % Define system size
 n = 8;
 
