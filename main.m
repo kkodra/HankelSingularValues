@@ -4,7 +4,7 @@
 clc
 clear all
 
-% Input Data: MIGHT NOT BE NEEDED. CHECK BEFORE DELETING
+% Input Data: MIGHT NOT BE NEEDED.
 n = 8; m = 1; l = 3; c = 3;
 
 A = [-6.30908 0 -10.9544 0 83.74458 0 0 24.05866;
