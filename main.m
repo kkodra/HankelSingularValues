@@ -4,8 +4,8 @@
 clc
 clear all
 
-% Input Data: MIGHT NOT BE NEEDED.
-n = 8; m = 1; l = 3; c = 3;
+% Define system size
+n = 8;
 
 A = [-6.30908 0 -10.9544 0 83.74458 0 0 24.05866;
     0 -161.083 0 0 51.52923 0 -18.0261 0;
