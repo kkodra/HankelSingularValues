@@ -1,13 +1,18 @@
-function [Li,Hi] = calc_LH(A1,A2,A3,A4,eps)
+function [Li,Hi] = calc_LH(A1,A2,A3,A4,eps,iter)
 % Function computes matrices L and H needed for exact decoupling of SP system
 % Newton method solution utilized for computation. See references within main paper
 % for more details.
+
+% Set iteration to 5 by default if not specified
+if nargin < 6
+  iter = 5;
+end
 
 A4inv = inv(A4);
 L0 = A4inv*A3;
 
 % Newton Method Solution of the L-equation
-for i = 1:10
+for i = 1:iter
   Li = L0;
   D1i = A4+eps*Li*A2;
   D2i = -eps*(A1-A2*Li);
