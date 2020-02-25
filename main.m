@@ -58,7 +58,7 @@ C0 = C1-C2*A4inv*A3;
 B0 = B1-A2*A4inv*B2;
 D0 = Dsp-C2*A4inv*B2;
 
-% iter is number of iterations algorithm is evaluated
+% Another input argument can be added to represent number of iterations algorithm is evaluated. If not specified, it is set to 5
 [Li,Hi] = calc_LH(A1,A2,A3,A4,eps);
 
 % Slow fast matrices
