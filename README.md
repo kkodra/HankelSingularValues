@@ -21,5 +21,5 @@ Running _main.m_ generates all the results presented in the paper.
 
 ## 2. Dependencies
 
-Code does not depend on external libraries.
+MATLAB's Control System Toolbox is required to run the code.
 
