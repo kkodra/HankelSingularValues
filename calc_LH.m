@@ -2,6 +2,7 @@ function [Li,Hi] = calc_LH(A1,A2,A3,A4,eps,iter)
 % Function computes matrices L and H needed for exact decoupling of SP system
 % Newton method solution utilized for computation. See references within main paper
 % for more details.
+% Number of iterations is set by user. If not specified, it is defaulted to 5 (achieves very high accuracy). Refer to Table 2 in reference.
 
 % Set iteration to 5 by default if not specified
 if nargin < 6
