@@ -17,7 +17,7 @@ If you use this code, please cite as follows.
 
 ## 1. Instructions
 
-Running _main.m_ generates all the results presented in the paper.
+Running _main.m_ generates the results presented in the paper. See reference in _main.m_ for corrsponding results in paper.
 
 ## 2. Dependencies
 
