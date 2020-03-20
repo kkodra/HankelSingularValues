@@ -21,5 +21,5 @@ Running _main.m_ generates the results presented in the paper. See reference in 
 
 ## 2. Dependencies
 
-MATLAB's Control System Toolbox is required to run the code.
+MATLAB's Control System Toolbox is required to run the code (R2006a or later).
 
