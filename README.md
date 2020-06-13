@@ -6,7 +6,7 @@ Implementation is based on the following.
 
 If you use this code, please cite as follows.
 
-        K. Kodra, M. Skataric, Z. Gajic "Finding Hankel singular values for singularly perturbed linear continuous-time systems," IET Control Theory, 2017.
+        K. Kodra, M. Skataric, Z. Gajic, "Finding Hankel singular values for singularly perturbed linear continuous-time systems," IET Control Theory, vol. 11, no. 7, 2017.
 
 ## 1. Instructions
 
